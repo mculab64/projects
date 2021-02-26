@@ -40,9 +40,9 @@ SELECT f.flight_id,
                (ec.amount + bus.amount) total_revenue_tickets,
                dist.distance,
                CASE
-                WHEN ac.model = 'Boeing 737-300' THEN distance * 22.6 * (ec.quantity + bus.quantity)
-                ELSE distance * 16 * (ec.quantity + bus.quantity)
-                END AS expence
+                WHEN ac.model = 'Boeing 737-300' THEN distance * 22.6 * (ec.quantity + bus.quantity)/1000
+                ELSE distance * 16 * (ec.quantity + bus.quantity)/1000
+                END AS KG_FUEL
                
 FROM dst_project.flights f
 JOIN dst_project.airports ap ON ap.airport_code = f.arrival_airport
